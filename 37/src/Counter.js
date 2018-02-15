@@ -9,9 +9,9 @@ class Counter extends Component {
     console.log(this.props);
     return (
       <div className="Counter">
-        {/* <h1>{store.getState().counters[this.props.index].count}</h1> */}
-        <button onClick={this.decrement}> - </button>
-        <button onClick={this.increment}> + </button>
+        { <h1>{this.props.count}</h1> }
+        <button onClick={this.props.decrement}> - </button>
+        <button onClick={this.props.increment}> + </button>
       </div>
     );
   }
@@ -19,23 +19,23 @@ class Counter extends Component {
 
 const mapStateToProps = function(state) {
   return {
-    dogsarecool: state.isBack
+    counter: state.counters
   };
 };
 
-const mapDispatchToProps = function(dispatch) {
+const mapDispatchToProps = function(dispatch, ownProps) {
   return {
     decrement: () => {
       dispatch({
         type: 'DECREMENT',
-        index: this.props.index
+        index: ownProps.index
       });
     },
 
     increment: () => {
       dispatch({
         type: 'INCREMENT',
-        index: this.props.index
+        index: ownProps.index
       });
     }
   };
